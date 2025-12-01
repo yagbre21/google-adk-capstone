@@ -163,7 +163,7 @@ export default function App() {
             {' · '}
             Built with Google ADK and Gemini for the{' '}
             <a
-              href="https://www.kaggle.com/competitions/agents-intensive-capstone-project"
+              href="https://www.kaggle.com/code/yagbre/agentic-job-search-recommender"
               target="_blank"
               rel="noopener noreferrer"
               className="text-primary-600 hover:underline"

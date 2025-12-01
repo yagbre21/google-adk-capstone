@@ -41,7 +41,8 @@ async def lifespan(app: FastAPI):
             print("   API will attempt to initialize on first request")
 
     print(f"✅ API ready at http://localhost:8000")
-    print(f"📚 Docs at http://localhost:8000/docs")
+    print(f"📚 Swagger docs at http://localhost:8000/api/docs")
+    print(f"📖 ReDoc at http://localhost:8000/api/redoc")
 
     yield
 
@@ -56,18 +57,51 @@ def create_app() -> FastAPI:
     app = FastAPI(
         title=settings.app_name,
         description="""
-        AI-powered resume analysis and job recommendations.
+## AI-Powered Resume Analysis & Job Recommendations
 
-        Upload your resume or paste the text, and get personalized job recommendations
-        across 4 tiers: Exact Match, Level Up, Stretch, and Trajectory.
+Upload your resume or paste the text, and get personalized job recommendations
+across 4 tiers:
 
-        Built with Google ADK and Gemini.
+| Tier | Description |
+|------|-------------|
+| **Exact Match** | Jobs you could land next week |
+| **Level Up** | Your next promotion, externally |
+| **Stretch** | Ambitious but possible |
+| **Trajectory** | Where your career is heading |
+
+### How It Works
+
+1. **Resume Parser** extracts skills, experience, and career trajectory
+2. **Level Classifier** researches industry ladders and maps your level (1-10)
+3. **Deliberation** - Conservative and Optimistic agents debate your level
+4. **Consensus** - Weighted ensemble voting produces calibrated level
+5. **Job Scout** - Parallel agents search for jobs at each tier
+6. **Formatter** - Structured output with compensation estimates
+
+### Built With
+- [Google ADK](https://google.github.io/adk-docs/) (Agent Development Kit)
+- Gemini 2.5 Flash, Pro, and Flash-Lite
+- Google Search Grounding for real-time job data
         """,
         version=settings.api_version,
         lifespan=lifespan,
-        # Only expose docs in debug mode
-        docs_url="/docs" if settings.debug else None,
-        redoc_url="/redoc" if settings.debug else None
+        docs_url="/api/docs",
+        redoc_url="/api/redoc",
+        openapi_url="/api/openapi.json",
+        openapi_tags=[
+            {
+                "name": "Analysis",
+                "description": "Resume analysis and job recommendation endpoints"
+            }
+        ],
+        contact={
+            "name": "Yves Agbre",
+            "url": "https://github.com/yagbre21/google-adk-capstone"
+        },
+        license_info={
+            "name": "CC-BY-SA 4.0",
+            "url": "https://creativecommons.org/licenses/by-sa/4.0/"
+        }
     )
 
     # CORS - use configured origins only (no wildcard in production)
