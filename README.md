@@ -1,6 +1,6 @@
 # Agentic Job Search Recommender
 
-Your resume argues with itself. Two AI agents debate your level, reach consensus, then find jobs you'd actually take. Under 2 minutes.
+Your resume argues with itself. Two AI agents debate your level, reach consensus, then find jobs you'd actually take. Under 5 minutes.
 
 ## The Problem
 
