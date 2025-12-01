@@ -233,3 +233,17 @@ results/
 *.swo
 *~
 .DS_Store
+
+# Screenshots and temp images
+*.png
+*.jpg
+*.jpeg
+*.gif
+*.bmp
+Screenshot*.png
+
+# Node.js (frontend)
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
