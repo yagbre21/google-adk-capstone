@@ -139,6 +139,6 @@ Built for the **Kaggle Agents Intensive** (November 2025).
 **Yves Agbre**
 [LinkedIn](https://www.linkedin.com/in/yvesagbre/) · [GitHub](https://github.com/yagbre21)
 
-## 📄 License
+## License
 **CC-BY-SA 4.0**
 *Open source for educational analysis. Commercial derivatives must credit the original architecture.*
