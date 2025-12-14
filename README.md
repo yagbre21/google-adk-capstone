@@ -1,13 +1,13 @@
-# Agentic Job Search Recommender (Arbiter) ⚖️
+# Agentic Job Search Recommender (Arbiter) 
 **Google AI Agents Intensive Capstone Project (Concierge Track)**
 
 > **"Your resume argues with itself."**
 > AI agents debate your level, reach consensus, then find jobs you'd actually take.
 
-## 🧐 The Problem: Title Inflation vs. Reality
+## The Problem: Title Inflation vs. Reality
 Job boards treat your resume as a bag of keywords. They match "Python" to "Python" and call it a day. But in the real world, a "Head of Product" at a 50-person startup might map to a "Senior PM" at a Big Tech firm. The problem isn't search—it's **calibration**.
 
-## 🏗️ The Solution: Adversarial Consensus
+## The Solution: Adversarial Consensus
 This is not a standard RAG wrapper. It is a **multi-agent system** that creates artificial tension through deliberation. It uses an **Agent-to-Agent (A2A)** protocol to simulate a hiring committee:
 
 1.  **The Skeptic (Conservative):** Anchors low, finding gaps in tenure and scope.
@@ -45,7 +45,7 @@ graph TD
     Validator --> Output[Final Recommendation]
 ```
 
-## 🎯 4-Tier Recommendation Output
+## 4-Tier Recommendation Output
 Instead of a flat list, jobs are categorized by career strategy:
 
 | Tier | Strategy | What It Means |
@@ -55,7 +55,7 @@ Instead of a flat list, jobs are categorized by career strategy:
 | **Stretch** | High Risk/Reward | Ambitious but theoretically possible. |
 | **Trajectory** | North Star | Where your career wants to go in 3-5 years. |
 
-## 🛠️ Tech Stack & Architecture
+## Tech Stack & Architecture
 
 **Backend:**
 *   **Framework:** Python 3.10+, FastAPI + Uvicorn
@@ -68,7 +68,7 @@ Instead of a flat list, jobs are categorized by career strategy:
 *   Tailwind CSS
 *   Server-Sent Events (SSE) for real-time debate streaming
 
-## 🧠 Google ADK Implementation Details
+## Google ADK Implementation Details
 This project pushes the ADK beyond simple function calling. It demonstrates:
 
 *   **A2A Protocol:** Agents communicating directly with other agents to resolve conflict.
@@ -79,7 +79,7 @@ This project pushes the ADK beyond simple function calling. It demonstrates:
 
 *(Requirement was 3 concepts; this implementation demonstrates 7.)*
 
-## 🚀 Quick Start
+## Quick Start
 
 ### Prerequisites
 *   Python 3.10+
@@ -118,7 +118,7 @@ npm run dev
 ```
 *Frontend runs at http://localhost:5173*
 
-## 🔌 API Endpoints
+## API Endpoints
 
 | Method | Endpoint | Description |
 | :--- | :--- | :--- |
@@ -126,16 +126,16 @@ npm run dev
 | `POST` | `/api/v1/refine/stream` | Refines results based on user feedback. |
 | `GET` | `/api/v1/health` | System health check. |
 
-## 🛡️ Security & Privacy
+## Security & Privacy
 *   **Ephemeral Processing:** Resumes are processed in memory and never stored on disk.
 *   **Input Limits:** File uploads capped at 10MB; Context windows managed via token limits.
 
-## 🏆 Context
+## Context
 Built for the **Kaggle Agents Intensive** (November 2025).
 *   **Track:** Concierge Agents
 *   **Status:** Capstone Project
 
-## 👤 Author
+## Author
 **Yves Agbre**
 [LinkedIn](https://www.linkedin.com/in/yvesagbre/) · [GitHub](https://github.com/yagbre21)
 
