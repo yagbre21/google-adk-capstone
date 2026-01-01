@@ -33,7 +33,7 @@ class Settings(BaseSettings):
         return [origin.strip() for origin in self.cors_origins_str.split(",") if origin.strip()]
 
     model_config = {
-        "env_file": ".env",
+        "env_file": ["../../.env", ".env"],  # Check root first, then local
         "env_file_encoding": "utf-8",
         "extra": "ignore"
     }

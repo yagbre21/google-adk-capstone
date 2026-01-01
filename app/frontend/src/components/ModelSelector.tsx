@@ -39,16 +39,16 @@ const modeConfig = {
   },
   deep: {
     label: 'Deep',
-    description: 'Every gap scrutinized',
-    baseColor: 'border-red-700 text-red-700 bg-red-50',
-    hoverColor: 'hover:bg-red-100 hover:border-red-800',
-    selectedColor: 'border-red-700 bg-red-100 text-red-800 ring-2 ring-offset-2 ring-red-500',
+    description: 'Every gap scrutinized (Coming Soon)',
+    baseColor: 'border-gray-200 text-gray-300 bg-gray-50',
+    hoverColor: '',
+    selectedColor: 'border-gray-200 bg-gray-50 text-gray-300',
     icon: (
-      <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+      <svg className="w-4 h-4 text-gray-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" />
       </svg>
     ),
-    isDeep: true,
+    isDisabled: true,
   },
 };
 
@@ -96,25 +96,30 @@ export function ModelSelector({ value, onChange, disabled }: ModelSelectorProps)
       <style>{deepStyles}</style>
       <div className="flex flex-col items-start gap-1">
         <div className="flex gap-1.5">
-          {(Object.keys(modeConfig) as ModelMode[]).map((mode) => {
-            const config = modeConfig[mode];
+          {(Object.keys(modeConfig) as ModelMode[])
+            .filter(mode => mode !== 'deep')  // Hide deep mode from UI
+            .map((mode) => {
+            const config = modeConfig[mode] as typeof modeConfig.fast & { isDisabled?: boolean };
             const isSelected = value === mode;
+            const isModeDisabled = disabled || config.isDisabled;
 
             return (
               <button
                 key={mode}
-                onClick={() => handleClick(mode)}
-                disabled={disabled}
+                onClick={() => !config.isDisabled && handleClick(mode)}
+                disabled={isModeDisabled}
+                title={config.isDisabled ? 'Coming soon - requires paid API tier' : undefined}
                 className={`
                   flex items-center gap-1.5 px-3 py-1.5 rounded-md border-2 font-medium text-xs
                   transition-all duration-200 transform
                   ${isSelected ? config.selectedColor : `${config.baseColor} ${config.hoverColor}`}
-                  ${!isSelected && !disabled ? 'hover:scale-105 hover:shadow-md' : ''}
-                  ${disabled ? 'opacity-50 cursor-not-allowed' : 'cursor-pointer'}
+                  ${!isSelected && !isModeDisabled ? 'hover:scale-105 hover:shadow-md' : ''}
+                  ${isModeDisabled ? 'opacity-40 cursor-not-allowed pointer-events-none' : 'cursor-pointer'}
                 `}
               >
-                <span className={isSelected ? 'text-orange-600' : ''}>{config.icon}</span>
+                <span className={isSelected && !config.isDisabled ? 'text-orange-600' : ''}>{config.icon}</span>
                 <span>{config.label}</span>
+                {config.isDisabled && <span className="text-[10px] ml-1">(Soon)</span>}
               </button>
             );
           })}

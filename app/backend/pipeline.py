@@ -37,22 +37,22 @@ _refinement_runner = None
 
 # Model mode configurations
 MODEL_CONFIGS = {
-    # Fast mode: Gemini 2.0 Flash - Fastest, good for quick tests
+    # Fast mode: Gemini 2.5 Flash - Fastest, good for quick tests
     "fast": {
-        "lite": "gemini-2.0-flash",
-        "flash": "gemini-2.0-flash",
-        "pro": "gemini-2.0-flash",
-    },
-    # Standard mode: Gemini 2.5 series - Balanced quality and speed
-    "standard": {
         "lite": "gemini-2.5-flash-lite",
         "flash": "gemini-2.5-flash",
-        "pro": "gemini-2.5-pro",
+        "pro": "gemini-3-flash-preview",
     },
-    # Deep mode: Gemini 3 Pro - Best quality, slowest
+    # Standard mode: Gemini 3 Flash across the board
+    "standard": {
+        "lite": "gemini-3-flash-preview",
+        "flash": "gemini-3-flash-preview",
+        "pro": "gemini-3-flash-preview",
+    },
+    # Deep mode: Gemini 3 Pro for consensus
     "deep": {
-        "lite": "gemini-2.5-flash",
-        "flash": "gemini-2.5-flash",
+        "lite": "gemini-3-flash-preview",
+        "flash": "gemini-3-flash-preview",
         "pro": "gemini-3-pro-preview",
     },
 }
@@ -67,9 +67,9 @@ def get_models(mode: str = None) -> dict:
     return MODEL_CONFIGS.get(mode, MODEL_CONFIGS["standard"])
 
 # Default models (for backward compatibility)
-MODEL_LITE = "gemini-2.5-flash-lite"
-MODEL_FLASH = "gemini-2.5-flash"
-MODEL_PRO = "gemini-2.5-pro"
+MODEL_LITE = "gemini-3-flash-preview"
+MODEL_FLASH = "gemini-3-flash-preview"
+MODEL_PRO = "gemini-3-flash-preview"
 MODEL_ID = MODEL_FLASH
 
 # Rate limit configuration
